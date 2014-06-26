@@ -26,3 +26,10 @@
 .table-holder table {
     margin-bottom: 0 !important;
 }
+
+.navbar-brand {
+    font-family: 'Raleway', cursive;
+    padding: 10px 15px 10px 15px !important;
+    display: inline-block;
+}
+

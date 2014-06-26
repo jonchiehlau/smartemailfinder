@@ -1,7 +1,7 @@
 <h1>Results</h1>
 
 <% if @error %>
-    <div class="alert alert-danger" role="alert">Sorry, en error ocurred: <%= @error %><div class="alert alert-danger" role="alert">
+    <div class="alert alert-danger" role="alert">Sorry, en error ocurred: <%= @error %></div>
 <% else %>
     <% if @matched_persons.any? %>
         <%= form_tag find_emails_export_path, :class => "" do %>
