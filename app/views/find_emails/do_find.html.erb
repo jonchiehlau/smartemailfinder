@@ -1,7 +1,7 @@
 <h1>Results</h1>
 
 <% if @error %>
-    Sorry, en error ocurred: <%= @error %>
+    <div class="alert alert-danger" role="alert">Sorry, en error ocurred: <%= @error %><div class="alert alert-danger" role="alert">
 <% else %>
     <% if @matched_persons.any? %>
         <%= form_tag find_emails_export_path, :class => "" do %>
@@ -35,7 +35,7 @@
                             <%= hidden_field_tag "persons[][email]", match[:email] %>
                           </td>
                           <td>
-                            <%= match[:linkedin] ? (link_to match[:linked_in][:username], match[:linked_in][:url], :target => '_blank') : 'N/A' %>
+                            <%= match[:linkedin] ? (link_to match[:linkedin][:username], match[:linkedin][:url], :target => '_blank') : 'N/A' %>
                             <%= hidden_field_tag "persons[][linkedin]", (match[:linkedin][:url] rescue "") %>
                           </td>
                           <td>
@@ -61,6 +61,6 @@
 
         <% end %>
     <% else %>
-        No results found.
+        <div class="alert alert-danger" role="alert">Sorry, no results found.</div>
     <% end %>
 <% end %>

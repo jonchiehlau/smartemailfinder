@@ -25,13 +25,13 @@
           </div>
           <div class="form-group">
             <label>&nbsp;</label><br/>
-            <%= link_to "Add", "", :class => "btn btn-default" %>
+            <%= link_to "Add", "", :id =>'add_person', :class => "btn btn-default" %>
           </div>
         </div>
         <br/>
         <br/>
 
-        <div class="table-holder">
+        <div class="table-holder" id="persons_table">
           <table class="table table-striped table-hover">
             <thead>
             <tr>
@@ -41,41 +41,6 @@
             </tr>
             </thead>
             <tbody>
-            <tr>
-              <td>John
-                <%= hidden_field_tag "persons[][first_name]", "irina" %>
-              </td>
-              <td>Doe
-                <%= hidden_field_tag "persons[][last_name]", "linkedin" %>
-              </td>
-              <td>google.com
-                <%= hidden_field_tag "persons[][domain]", "gmail.com" %>
-              </td>
-            </tr>
-            <tr>
-              <td>Alice
-                <%= hidden_field_tag "persons[][first_name]", "iryna" %>
-              </td>
-              <td>Blue
-                <%= hidden_field_tag "persons[][last_name]", "zayats" %>
-              </td>
-              <td>
-                facebook.com
-                <%= hidden_field_tag "persons[][domain]", "gmail.com" %>
-              </td>
-            </tr>
-            <tr>
-              <td>Alice
-                <%= hidden_field_tag "persons[][first_name]", "taras" %>
-              </td>
-              <td>Blue
-                <%= hidden_field_tag "persons[][last_name]", "havrylyukh" %>
-              </td>
-              <td>
-                facebook.com
-                <%= hidden_field_tag "persons[][domain]", "gmail.com" %>
-              </td>
-            </tr>
             </tbody>
           </table>
         </div>
@@ -89,3 +54,38 @@
 
   </div>
 </div>
+
+
+<script type="text/javascript">
+  $(document).ready(function(){
+
+
+
+      $("#add_person").click(function(e){
+          e.preventDefault();
+
+          var has_error = false;
+          var dom_str = "<tr>";
+          $("#first_name, #last_name, #domain").each(function( index ) {
+              if ($.isEmptyObject($(this).val())){
+                  $(this).parent("div").addClass("has-error");
+                  has_error = true;
+              } else {
+                  $(this).parent("div").removeClass("has-error");
+              }
+              var id = $(this).attr("id");
+              dom_str += "<td>"+$(this).val()+"<input id='persons__"+id+"' name='persons[]["+id+"]' type='hidden' value='"+$(this).val()+"'></td>";
+          });
+          dom_str += "</tr>";
+
+          if (has_error) return false;
+
+          $("#persons_table tbody").append(dom_str);
+
+          $("#first_name, #last_name, #domain").val("");
+
+          $("#first_name").focus();
+          return false;
+      });
+  });
+</script>
