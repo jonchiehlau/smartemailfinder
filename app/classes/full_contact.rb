@@ -49,12 +49,6 @@ class FullContact
       raise FullContactException.new("Failed to communicate to FullContact API. Message was: #{api_result['message']}")
     end
 
-    puts '==='
-    puts matched_results
-    puts '==='
-    puts retry_results
-    puts '==='
-
     return matched_results, retry_results
   end
 end

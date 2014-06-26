@@ -32,10 +32,6 @@ class EmailFinder
       Rails.logger.info "Matched #{matched_emails.size} emails, to retry: #{retry_emails.size} emails."
 
       matched_emails.each_pair do |matched_email, social_data|
-        puts '==='
-        puts "matched email: #{matched_email}"
-        puts emails_to_person_map
-        puts '==='
         person = emails_to_person_map[matched_email]
         person.matched_permutations << social_data.merge({:email => matched_email})
       end

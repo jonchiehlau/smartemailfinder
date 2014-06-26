@@ -8,8 +8,6 @@
 
     <br/>
     <%= form_tag find_emails_do_find_path, :class => "" do %>
-
-
         <div class="form-inline">
           <div class="form-group">
             <label for="first_name">First Name</label><br/>
@@ -31,7 +29,7 @@
         <br/>
         <br/>
 
-        <div class="table-holder" id="persons_table">
+        <div class="table-holder" id="persons_table" style="display: none">
           <table class="table table-striped table-hover">
             <thead>
             <tr>
@@ -48,7 +46,7 @@
 
         <br/>
 
-        <%= submit_tag "Find Emails", :class => "btn btn-primary pull-right" %>
+        <%= submit_tag "Find Emails", :id => "find_emails", :class => "btn btn-primary pull-right", :style => "display: none" %>
 
     <% end %>
 
@@ -65,7 +63,7 @@
           e.preventDefault();
 
           var has_error = false;
-          var dom_str = "<tr>";
+          var dom_str = "<tr style='display: none;'>";
           $("#first_name, #last_name, #domain").each(function( index ) {
               if ($.isEmptyObject($(this).val())){
                   $(this).parent("div").addClass("has-error");
@@ -80,7 +78,9 @@
 
           if (has_error) return false;
 
-          $("#persons_table tbody").append(dom_str);
+          $("#persons_table").show();
+          $(dom_str).appendTo("#persons_table tbody").show(400);
+          $("#find_emails").show();
 
           $("#first_name, #last_name, #domain").val("");
 
