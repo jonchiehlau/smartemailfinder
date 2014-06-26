@@ -1,0 +1,66 @@
+<h1>Results</h1>
+
+<% if @error %>
+    Sorry, en error ocurred: <%= @error %>
+<% else %>
+    <% if @matched_persons.any? %>
+        <%= form_tag find_emails_export_path, :class => "" do %>
+
+            <div class="table-holder">
+              <table class="table table-striped table-hover">
+                <thead>
+                <tr>
+                  <th>First Name</th>
+                  <th>Last Name</th>
+                  <th>Email</th>
+                  <th>LinkedIn Profile</th>
+                  <th>Facebook Profile</th>
+                  <th>Twitter Profile</th>
+                </tr>
+                </thead>
+                <tbody>
+                <% @matched_persons.each do |person| %>
+                    <% person.matched_permutations.each do |match| %>
+                        <tr>
+                          <td>
+                            <%= person.first_name %>
+                            <%= hidden_field_tag "persons[][first_name]", person.first_name %>
+                          </td>
+                          <td>
+                            <%= person.last_name %>
+                            <%= hidden_field_tag "persons[][last_name]", person.last_name %>
+                          </td>
+                          <td>
+                            <%= match[:email] %>
+                            <%= hidden_field_tag "persons[][email]", match[:email] %>
+                          </td>
+                          <td>
+                            <%= match[:linkedin] ? (link_to match[:linked_in][:username], match[:linked_in][:url], :target => '_blank') : 'N/A' %>
+                            <%= hidden_field_tag "persons[][linkedin]", (match[:linkedin][:url] rescue "") %>
+                          </td>
+                          <td>
+                            <%= match[:facebook] ? (link_to match[:facebook][:username], match[:facebook][:url], :target => '_blank') : 'N/A' %>
+                            <%= hidden_field_tag "persons[][facebook]", (match[:facebook][:url] rescue "") %>
+                          </td>
+                          <td>
+                            <%= match[:twitter] ? (link_to "@#{match[:twitter][:username]}", match[:twitter][:url], :target => '_blank') : 'N/A' %>
+                            <%= hidden_field_tag "persons[][twitter]", (match[:twitter][:url] rescue "") %>
+                          </td>
+                        </tr>
+                    <% end %>
+                <% end %>
+                </tbody>
+              </table>
+            </div>
+
+
+            <br/>
+
+            <%= submit_tag "Download as CSV", :class => "btn btn-primary pull-right" %>
+
+
+        <% end %>
+    <% else %>
+        No results found.
+    <% end %>
+<% end %>

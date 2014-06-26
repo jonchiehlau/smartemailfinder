@@ -13,3 +13,16 @@
  *= require_tree .
  *= require_self
  */
+.table-holder {
+    padding: 1px;
+    margin-left: 0;
+    margin-right: 0;
+    background-color: #fff;
+    border: 1px solid #ddd !important;
+    border-radius: 4px 4px 0 0;
+    box-shadow: none;
+}
+
+.table-holder table {
+    margin-bottom: 0 !important;
+}
