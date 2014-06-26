@@ -4,6 +4,9 @@ Rails.application.routes.draw do
   post 'find_emails/do_find'
   post 'find_emails/export'
 
+  get 'find_emails/bulk_upload'
+  post 'find_emails/do_find_bulk'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

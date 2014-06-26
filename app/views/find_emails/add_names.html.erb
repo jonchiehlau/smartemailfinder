@@ -29,6 +29,13 @@ end %>
             <label>&nbsp;</label><br/>
             <%= link_to "Add", "", :id => 'add_person', :class => "btn btn-default" %>
           </div>
+
+          <div class="form-group pull-right">
+            <label>&nbsp;</label><br/>
+            <span style="padding: 0 5px 0 15px; color: #999999">or</span>
+            <%= link_to "Upload CSV", find_emails_bulk_upload_path, :class => "btn btn-warning" %>
+
+          </div>
         </div>
         <br/>
         <br/>

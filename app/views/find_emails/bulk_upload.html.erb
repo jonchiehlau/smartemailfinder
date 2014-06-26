@@ -1,0 +1,37 @@
+<%= content_for(:navbar_class) do
+  "col-lg-8 col-lg-offset-2"
+end %>
+<div class="row">
+  <div class="col-lg-8 col-lg-offset-2">
+    <h1>Please upload your CSV file:</h1>
+
+    <p><%= link_to "Click here", "/template.csv" %> to download a template.</p>
+    <br/>
+
+    <%= form_tag find_emails_do_find_bulk_path, :multipart => true do %>
+
+
+        <%=file_field_tag :csv, :id => 'file_picker', :title => 'Select a file from your computer', :accept => '.csv'%>
+        <br/><br/>
+        <button class="btn btn-primary has-spinner" id="find_emails" style="display: none">
+
+          <span class="spinner"><i class="fa fa-refresh"></i></span>
+          Upload
+        </button>
+    <% end %>
+  </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('input[type=file]').bootstrapFileInput();
+
+        $("#file_picker").change(function () {
+            if ($.isEmptyObject($(this).val())) {
+                $("#find_emails").hide();
+            } else {
+                $("#find_emails").show();
+            }
+        });
+    });
+</script>
