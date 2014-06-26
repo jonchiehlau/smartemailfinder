@@ -38,8 +38,8 @@ class FindEmailsController < ApplicationController
     rescue => e
       Rails.logger.error e.message
       Rails.logger.error e.backtrace.join("\n")
-      @error = "Failed to parse the file."
+      @error = 'Failed to parse the file.'
     end
-    render "do_find"
+    render 'do_find'
   end
 end
