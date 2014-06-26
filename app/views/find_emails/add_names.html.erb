@@ -62,7 +62,7 @@ end %>
 
 <script type="text/javascript">
     $(document).ready(function () {
-
+        $("#first_name").focus();
 
         $("#add_person").click(function (e) {
             e.preventDefault();
@@ -103,5 +103,12 @@ end %>
             $("#find_emails .spinner .fa").addClass('fa-spin');
             $("#find_emails").toggleClass('active');
         });
+
+        $(document).keypress(
+                function (event) {
+                    if (event.which == '13') {
+                        event.preventDefault();
+                    }
+                });
     });
 </script>
