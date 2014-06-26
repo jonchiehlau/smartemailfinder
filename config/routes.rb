@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  root to: 'find_emails#add_names'
+  get 'find_emails/add_names'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
