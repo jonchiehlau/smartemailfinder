@@ -33,9 +33,11 @@ class FullContact
         email = CGI.unescape(url.gsub "#{API_ENDPOINT}/person.json?email=", '')
         if email_response['status'].to_i == 200
           matched_results[email] = {}
-          %w(facebook twitter linkedin).each do |type_id|
-            profile_data = email_response['socialProfiles'].find { |profile| profile['typeId'] == type_id }
-            matched_results[email][type_id.to_sym] = {:username => profile_data['username'], :url => profile_data['url']} if profile_data
+          if email_response['socialProfiles']
+            %w(facebook twitter linkedin).each do |type_id|
+              profile_data = email_response['socialProfiles'].find { |profile| profile['typeId'] == type_id }
+              matched_results[email][type_id.to_sym] = {:username => profile_data['username'], :url => profile_data['url']} if profile_data
+            end
           end
 
           matched_results.delete(email) if matched_results[email].empty?
