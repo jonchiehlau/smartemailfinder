@@ -81,5 +81,5 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 
-  Rails.configuration.fullcontact_api_key = "4597b2585d36047b"
+  Rails.configuration.fullcontact_api_key = "716e0f6866557845"
 end
