@@ -30,9 +30,9 @@
                             <%= person.last_name %>
                             <%= hidden_field_tag "persons[][last_name]", person.last_name %>
                           </td>
-                          <td>
-                            <%= match[:email] %>
-                            <%= hidden_field_tag "persons[][email]", match[:email] %>
+                          <td class='<%="not_found" if match[:email].nil?%>'>
+                            <%= match[:email] || "Not Found" %>
+                            <%= hidden_field_tag "persons[][email]", (match[:email] || "Not Found")%>
                           </td>
                           <td>
                             <%= match[:linkedin] ? (link_to match[:linkedin][:username], match[:linkedin][:url], :target => '_blank') : 'N/A' %>

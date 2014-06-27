@@ -34,6 +34,11 @@
     display: inline-block;
 }
 
+td.not_found{
+    color: #B00100;
+    font-style: italic;
+}
+
 .spinner {
   display: inline-block;
   opacity: 0;

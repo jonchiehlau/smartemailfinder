@@ -3,7 +3,7 @@ class EmailFinder
   MAX_BATCH_SIZE = 20
 
   def initialize(persons)
-    @persons = persons
+    @persons = persons.dup
   end
 
   def find_emails
@@ -45,6 +45,12 @@ class EmailFinder
       Rails.logger.info "These emails left for next call: #{emails_to_person_map.keys}"
     end
 
-    @persons.reject { |p| p.matched_permutations.empty? }
+    @persons.each do |p|
+      if p.matched_permutations.empty?
+        p.matched_permutations << {:email => nil}
+      end
+    end
+
+    @persons
   end
 end
